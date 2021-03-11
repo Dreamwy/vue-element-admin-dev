@@ -66,3 +66,12 @@ export function fetchDeviceList(data) {
     baseURL: 'http://127.0.0.1:4002'
   })
 }
+
+export function fetchAllCountList(data) {
+  return request({
+    url: '/api/allcount',
+    method: 'get',
+    params: data,
+    baseURL: 'http://127.0.0.1:4002'
+  })
+}
