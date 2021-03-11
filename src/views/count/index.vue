@@ -22,10 +22,10 @@ export default {
   data() {
     return {
       tabMapOptions: [
-        { label: '今天', key: 'today' },
-        { label: '昨天', key: 'yesterday' },
-        { label: '最近1周', key: 'week' },
-        { label: '最近1个月', key: 'month' }
+        { label: '今天', key: '0' },
+        { label: '昨天', key: '1' },
+        { label: '最近1周', key: '7' },
+        { label: '最近1个月', key: '30' }
       ],
       activeName: 'CN',
       createdTimes: 0
