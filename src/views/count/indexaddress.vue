@@ -11,6 +11,14 @@
       end-placeholder="结束日期"
       :picker-options="pickerOptions"
     />
+    <el-select v-model="selectvalue" placeholder="请选择">
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.province"
+        :value="item.province"
+      />
+    </el-select>
     <el-button
       type="primary"
       style="
@@ -28,18 +36,12 @@
       <el-table-column
         v-loading="loading"
         align="center"
-        label="地区"
+        label="酒店名称"
         width="65"
         element-loading-text="请给我点时间！"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.province }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="110px" align="center" label="酒店数量">
-        <template slot-scope="scope">
-          <span>{{ scope.row.hotelCount }}</span>
+          <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
 
@@ -83,8 +85,12 @@
 </template>
 
 <script>
-import { fetchAllCountList } from '@/api/article'
+import {
+  fetchAllCountByProvinceList,
+  fetchAllProvinceList
+} from '@/api/article'
 import moment from 'moment'
+
 export default {
   data() {
     return {
@@ -135,11 +141,19 @@ export default {
         ]
       },
       value2: '',
-      createdTimes: 0
+      createdTimes: 0,
+      options: [
+        {
+          province: '北京市'
+        }
+      ],
+
+      selectvalue: ''
     }
   },
+
   created() {
-    this.getList()
+    this.getAllProvinceList()
   },
   methods: {
     getList() {
@@ -153,9 +167,16 @@ export default {
         .format('YYYY-MM-DD HH:mm:ss')
       this.listQuery.start = start
       this.listQuery.end = end
-      fetchAllCountList(this.listQuery).then((response) => {
+      this.listQuery.province = this.selectvalue
+      fetchAllCountByProvinceList(this.listQuery).then((response) => {
         this.list = response.rows
         this.loading = false
+      })
+    },
+    getAllProvinceList() {
+      fetchAllProvinceList().then((response) => {
+        this.options = response.rows
+        this.getList()
       })
     }
   }

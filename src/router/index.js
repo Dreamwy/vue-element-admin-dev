@@ -87,7 +87,7 @@ export const constantRoutes = [
       },
       {
         path: 'addressCount',
-        component: () => import('@/views/count/index'),
+        component: () => import('@/views/count/indexaddress'),
         name: 'addressCount',
         meta: { title: '地区统计', affix: true }
       }
@@ -120,13 +120,14 @@ export const constantRoutes = [
         component: () => import('@/views/operation/index'),
         name: 'hotel',
         meta: { title: '酒店管理', affix: true }
-      },
-      {
-        path: 'addressCount',
-        component: () => import('@/views/operation/index'),
-        name: 'addressCount',
-        meta: { title: '地区统计', affix: true }
       }
+      // ,
+      // {
+      //   path: 'addressCount',
+      //   component: () => import('@/views/operation/index'),
+      //   name: 'addressCount',
+      //   meta: { title: '地区统计', affix: true }
+      // }
     ]
   },
   {

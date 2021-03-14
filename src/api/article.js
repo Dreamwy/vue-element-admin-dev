@@ -58,6 +58,15 @@ export function getHotel(data) {
   })
 }
 
+export function delHotel(data) {
+  return request({
+    url: '/api/hotel/delete',
+    method: 'get',
+    params: data,
+    baseURL: 'http://127.0.0.1:4002'
+  })
+}
+
 export function fetchDeviceList(data) {
   return request({
     url: '/api/device/list',
@@ -72,6 +81,23 @@ export function fetchAllCountList(data) {
     url: '/api/allcount',
     method: 'get',
     params: data,
+    baseURL: 'http://127.0.0.1:4002'
+  })
+}
+
+export function fetchAllCountByProvinceList(data) {
+  return request({
+    url: '/api/allcountbyprovince',
+    method: 'get',
+    params: data,
+    baseURL: 'http://127.0.0.1:4002'
+  })
+}
+
+export function fetchAllProvinceList() {
+  return request({
+    url: '/api/hotel/province',
+    method: 'get',
     baseURL: 'http://127.0.0.1:4002'
   })
 }

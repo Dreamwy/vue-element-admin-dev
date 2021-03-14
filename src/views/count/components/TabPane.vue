@@ -60,6 +60,7 @@
 
 <script>
 import { fetchAllCountList } from '@/api/article'
+import moment from 'moment'
 
 export default {
   filters: {
@@ -75,7 +76,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'CN'
+      default: '0'
     }
   },
   data() {
@@ -97,6 +98,13 @@ export default {
     getList() {
       this.loading = true
       this.$emit('create') // for test
+      const start = moment().subtract(this.type, 'days').startOf('day').format('YYYY-MM-DD HH:mm:ss')
+      let end = moment().endOf('day').format('YYYY-MM-DD HH:mm:ss')
+      if (this.type === '1') {
+        end = moment().subtract(1, 'days').endOf('day').format('YYYY-MM-DD HH:mm:ss')
+      }
+      this.listQuery.start = start
+      this.listQuery.end = end
       fetchAllCountList(this.listQuery).then(response => {
         this.list = response.rows
         this.loading = false
