@@ -178,9 +178,9 @@ export default {
       return statusMap[status]
     },
     typeFilter(type) {
-      if (type == 1) {
+      if (type === 1) {
         return '扫码单独使用'
-      } else if (type == 2) {
+      } else if (type === 2) {
         return '包含房费内'
       }
       return '扫码单独使用'
@@ -197,10 +197,10 @@ export default {
       formLabelWidth: '120px',
       postForm: Object.assign({}),
       updatePostForm: {
-        id:'',
-        name:'',
-        address:'',
-        payway:0
+        id: '',
+        name: '',
+        address: '',
+        payway: 0
       },
       dialogTableVisible: false,
       updateDialogTableVisible: false,
@@ -264,11 +264,11 @@ export default {
       this.updatePostForm.id = row.id
       this.updatePostForm.name = row.name
       this.updatePostForm.address = row.address
-      this.selected1=[]
+      this.selected1 = []
       this.selected1[0] = row.province
       this.selected1[1] = row.city
       console.log('!!!!!' + this.selected1)
-      this.updatePostForm.payway = row.payway+""
+      this.updatePostForm.payway = row.payway + ''
     }
   }
 }
