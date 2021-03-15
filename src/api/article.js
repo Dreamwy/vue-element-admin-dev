@@ -67,6 +67,15 @@ export function delHotel(data) {
   })
 }
 
+export function updateHotel(data) {
+  return request({
+    url: '/api/hotel/update',
+    method: 'get',
+    params: data,
+    baseURL: 'http://127.0.0.1:4002'
+  })
+}
+
 export function fetchDeviceList(data) {
   return request({
     url: '/api/device/list',
