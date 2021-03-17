@@ -52,6 +52,16 @@
           <span>{{ row.payway | typeFilter }}</span>
         </template>
       </el-table-column>
+      <el-table-column width="110px" align="center" label="单笔扣费">
+        <template slot-scope="{ row }">
+          <span>{{ row.price }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="110px" align="center" label="80%扣费次数">
+        <template slot-scope="{ row }">
+          <span>{{ row.saletime }}</span>
+        </template>
+      </el-table-column>
       <el-table-column
         label="Actions"
         align="center"
@@ -102,6 +112,22 @@
             <el-option label="包含房费内" value="2" />
           </el-select>
         </el-form-item>
+        <el-form-item label="单笔扣费:" :label-width="formLabelWidth">
+          <el-select v-model="postForm.price" placeholder="单笔扣费">
+            <el-option label="15" value="15" />
+            <el-option label="20" value="20" />
+            <el-option label="25" value="25" />
+            <el-option label="30" value="30" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="80%扣费次数:" :label-width="formLabelWidth">
+          <el-select v-model="postForm.saletime" placeholder="80%扣费次数">
+            <el-option label="38" value="38" />
+            <el-option label="25" value="25" />
+            <el-option label="20" value="20" />
+            <el-option label="15" value="15" />
+          </el-select>
+        </el-form-item>
       </el-form>
       <el-button
         v-loading="loading"
@@ -148,6 +174,22 @@
           <el-select v-model="updatePostForm.payway" placeholder="付款方式">
             <el-option label="扫码单独使用" value="1" />
             <el-option label="包含房费内" value="2" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="单笔扣费:" :label-width="formLabelWidth">
+          <el-select v-model="updatePostForm.price" disabled placeholder="单笔扣费">
+            <el-option label="15" value="15" />
+            <el-option label="20" value="20" />
+            <el-option label="25" value="25" />
+            <el-option label="30" value="30" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="80%扣费次数:" :label-width="formLabelWidth">
+          <el-select v-model="updatePostForm.saletime" disabled placeholder="80%扣费次数">
+            <el-option label="38" value="38" />
+            <el-option label="25" value="25" />
+            <el-option label="20" value="20" />
+            <el-option label="15" value="15" />
           </el-select>
         </el-form-item>
       </el-form>
@@ -261,6 +303,7 @@ export default {
     },
     handleUpdate(row) {
       this.updateDialogTableVisible = true
+      this.updatePostForm = row
       this.updatePostForm.id = row.id
       this.updatePostForm.name = row.name
       this.updatePostForm.address = row.address
