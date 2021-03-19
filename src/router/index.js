@@ -107,6 +107,23 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/order',
+    component: Layout,
+    redirect: '/订单管理',
+    meta: {
+      title: '订单管理',
+      icon: 'dashboard'
+    },
+    children: [
+      {
+        path: 'device',
+        component: () => import('@/views/order/deviceindex'),
+        name: 'count',
+        meta: { title: '设备订单', affix: true }
+      }
+    ]
+  },
+  {
     path: '/operation',
     component: Layout,
     redirect: '/运营管理',
